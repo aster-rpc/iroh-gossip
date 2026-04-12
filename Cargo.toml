@@ -168,3 +168,11 @@ debug = true
 [profile.release]
 debug = true
 
+# Pin to Aster 1.0 forks. The fork main branches mirror upstream main.
+[patch.crates-io]
+iroh = { git = "https://github.com/aster-rpc/iroh", rev = "3c329f0c350b98a772bccdf697bfcc519fcdf25a" }
+iroh-base = { git = "https://github.com/aster-rpc/iroh", rev = "3c329f0c350b98a772bccdf697bfcc519fcdf25a" }
+iroh-relay = { git = "https://github.com/aster-rpc/iroh", rev = "3c329f0c350b98a772bccdf697bfcc519fcdf25a" }
+noq = { git = "https://github.com/aster-rpc/noq", rev = "ddb8829dbc1cd401f8643ba9b93c542ffee43577" }
+noq-udp = { git = "https://github.com/aster-rpc/noq", rev = "ddb8829dbc1cd401f8643ba9b93c542ffee43577" }
+noq-proto = { git = "https://github.com/aster-rpc/noq", rev = "ddb8829dbc1cd401f8643ba9b93c542ffee43577" }
