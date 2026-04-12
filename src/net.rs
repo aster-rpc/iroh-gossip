@@ -23,7 +23,8 @@ use n0_future::{
     time::Instant,
     Stream, StreamExt as _,
 };
-use rand::{rngs::StdRng, SeedableRng};
+use rand::SeedableRng;
+use rand_chacha::ChaCha12Rng;
 use serde::{Deserialize, Serialize};
 use tokio::sync::{broadcast, mpsc, oneshot};
 use tokio_util::sync::CancellationToken;
@@ -276,7 +277,7 @@ impl Gossip {
 struct Actor {
     alpn: Bytes,
     /// Protocol state
-    state: proto::State<PublicKey, StdRng>,
+    state: proto::State<PublicKey, ChaCha12Rng>,
     /// The endpoint through which we dial peers
     endpoint: Endpoint,
     /// Dial machine to connect to peers
@@ -323,7 +324,7 @@ impl Actor {
             peer_id,
             Default::default(),
             config,
-            rand::rngs::StdRng::from_rng(&mut rand::rng()),
+            ChaCha12Rng::from_rng(&mut rand::rng()),
         );
         let (rpc_tx, rpc_rx) = mpsc::channel(TO_ACTOR_CAP);
         let (local_tx, local_rx) = mpsc::channel(16);
